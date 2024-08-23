@@ -14,6 +14,7 @@ const config: Config = {
         "custom-gray": "#666666",
         "custom-gray-2": "#999999",
         "custom-purple": "#6D5CBC",
+        "btn-bg": "#6D5CBC0D",
       },
     },
   },
