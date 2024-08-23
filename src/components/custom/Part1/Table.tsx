@@ -12,34 +12,36 @@ export default function Table() {
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-custom-purple font-bold">{t("results")}</h1>
-      <table style={{ backgroundColor: "white" }} className="table-auto shadow-md">
-        <thead>
-          <tr>
-            {headings.map((heading) => (
-              <th
-                key={heading}
-                className="px-6 py-7 text-left text-sm font-normal text-custom-gray-2 text-start"
-              >
-                {heading}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((data) => (
-            <tr key={Math.random()}>
-              {Object.keys(data).map((key) => (
-                <td
-                  key={key}
-                  className="border-t border-gray px-6 py-7 text-sm font-semibold text-custom-gray-1 text-start"
+      <div className="overflow-y-auto bg-white max-h-96">
+        <table className="table-auto shadow-md">
+          <thead>
+            <tr>
+              {headings.map((heading) => (
+                <th
+                  key={heading}
+                  className="px-6 py-7 text-left text-sm font-normal text-custom-gray-2 text-start"
                 >
-                  {data[key as keyof typeof data]}
-                </td>
+                  {heading}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((data) => (
+              <tr key={Math.random()}>
+                {Object.keys(data).map((key) => (
+                  <td
+                    key={key}
+                    className="border-t border-gray px-6 py-7 text-sm font-semibold text-custom-gray-1 text-start"
+                  >
+                    {data[key as keyof typeof data]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
