@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import TextEditorWrapper from "./TextEditorWrapper";
+import TextEditor from "./TextEditor";
 
 export default function Part3() {
   const t = useTranslations("Part3");
@@ -15,7 +15,9 @@ export default function Part3() {
           {t("content")}
         </p>
       </section>
-      <TextEditorWrapper />
+      <section>
+        <TextEditor />
+      </section>
     </article>
   );
 }
