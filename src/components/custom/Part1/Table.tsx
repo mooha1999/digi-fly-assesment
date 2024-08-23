@@ -7,13 +7,12 @@ export default function Table() {
   const t = useTranslations("Part1");
   const headings = [t("first"), t("last"), t("mobile"), t("email")];
   const users = useAppSelector(selectUsers);
-  console.log(users);
 
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-custom-purple font-bold">{t("results")}</h1>
-      <div className="overflow-y-auto bg-white max-h-96">
-        <table className="table-auto shadow-md">
+      <div className="overflow-y-auto bg-white max-h-96 shadow-lg">
+        <table className="table-auto shadow-lg w-full">
           <thead>
             <tr>
               {headings.map((heading) => (
