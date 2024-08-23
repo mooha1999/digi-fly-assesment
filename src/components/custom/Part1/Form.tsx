@@ -15,8 +15,8 @@ export default function Form() {
   return (
     <div className="flex flex-col justify-center items-center">
       <form action={formAction} className="flex flex-col w-full">
-        <div className="flex gap-7 items-center">
-          <div className="flex flex-col flex-grow">
+        <div className="flex gap-7 items-center flex-col xl:flex-row w-full">
+          <div className="flex flex-col flex-grow w-full">
             <label htmlFor="first" className="text-sm font-medium">
               {t("first")}
             </label>
@@ -25,10 +25,10 @@ export default function Form() {
               id="first"
               name="first"
               placeholder={t("first")}
-              className="border border-[#E0E0E0] rounded-sm py-2 px-3 mt-1 ps-6"
+              className="border border-[#E0E0E0] rounded-sm py-2 mt-1 ps-6"
             />
           </div>
-          <div className="flex flex-col flex-grow">
+          <div className="flex flex-col flex-grow w-full">
             <label htmlFor="last" className="text-sm font-medium">
               {t("last")}
             </label>
@@ -37,7 +37,7 @@ export default function Form() {
               id="last"
               name="last"
               placeholder={t("last")}
-              className="border border-[#E0E0E0] rounded-sm py-2 px-3 mt-1 ps-6"
+              className="border border-[#E0E0E0] rounded-sm py-2 mt-1 ps-6"
             />
           </div>
         </div>
