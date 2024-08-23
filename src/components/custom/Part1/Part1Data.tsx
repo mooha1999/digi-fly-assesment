@@ -1,17 +1,36 @@
 import Form from "./Form";
-import Table from "./Table";
-import fs from "fs";
 import TableWrapper from "./TableWrapper";
+import { UsersInfoPayload } from "@/models/users-info";
+import { UsersState } from "@/lib/redux/slices/users-slice";
 
 export default async function Part1Data() {
 
-  let users = [];
+  let users:UsersState[] = [];
 
   try {
-    const data = await fs.promises.readFile("data.json", "utf-8");
-    users = JSON.parse(data);
-  } catch (error) {
-    
+    const url = process.env.NEXT_PUBLIC_API_URL;
+
+    if (!url) {
+      throw new Error("API URL not found");
+    }
+
+    const data = await fetch(url);
+
+    const json:UsersInfoPayload[] = await data.json();
+
+    console.log(json);
+
+    users = json.map((user) => {
+      return {
+        first: user.FirstName,
+        last: user.LastName,
+        mobile: user.Phone,
+        email: user.Email,
+      };
+    });
+  }
+  catch (error: any) {
+    alert(error.message);
   }
 
   return (

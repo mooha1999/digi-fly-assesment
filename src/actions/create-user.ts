@@ -1,7 +1,7 @@
 "use server";
+import { UsersInfoPayload } from "@/models/users-info";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import fs from "fs";
 
 export async function createUser(_: any, formData: FormData) {
   try {
@@ -14,13 +14,30 @@ export async function createUser(_: any, formData: FormData) {
 
     const data = schema.parse(Object.fromEntries(formData));
 
-    const fileData = await fs.promises.readFile("data.json", "utf-8");
+    const url = process.env.NEXT_PUBLIC_API_URL;
 
-    const users: (typeof data)[] = JSON.parse(fileData);
+    if (!url) {
+      throw new Error("API URL not found");
+    }
 
-    users.push(data);
+    const payload:UsersInfoPayload = {
+      FirstName: data.first,
+      LastName: data.last,
+      Phone: data.mobile,
+      Email: data.email,
+    };
 
-    await fs.promises.writeFile("data.json", JSON.stringify(users));
+    const fileData = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!fileData.ok) {
+      throw new Error("API request failed");
+    }
 
     revalidatePath("/");
 
