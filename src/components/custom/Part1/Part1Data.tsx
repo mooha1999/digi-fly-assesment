@@ -30,7 +30,7 @@ export default async function Part1Data() {
     });
   }
   catch (error: any) {
-    alert(error.message);
+    console.error(error);
   }
 
   return (
